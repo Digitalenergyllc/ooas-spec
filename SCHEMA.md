@@ -72,7 +72,7 @@ An empty `claim_ids` revokes the whole document.
 
 ## 5. Control registry
 
-Control IDs come from the Perihelion Risk and Control Matrix. Format: `<domain>.<control>`, lowercase, dot-separated, stable once published. Adding a control is a versioned change to this file.
+Format: `<domain>.<control>`, lowercase, dot-separated. Adding or renaming a control is a versioned change to this file.
 
 Control IDs are stable once published. `rcm_ref` points at the NORS Risk Control Matrix, Solana Native Edition (36 controls, categories A, C, D, ELC, I, K, S). Controls marked "none" are Perihelion additions with no NORS source.
 
