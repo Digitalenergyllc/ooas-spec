@@ -74,17 +74,24 @@ An empty `claim_ids` revokes the whole document.
 
 Control IDs come from the Perihelion Risk and Control Matrix. Format: `<domain>.<control>`, lowercase, dot-separated, stable once published. Adding a control is a versioned change to this file.
 
-REPLACE THIS TABLE WITH THE REAL RCM IDS.
+Control IDs are stable once published. `rcm_ref` points at the NORS Risk Control Matrix, Solana Native Edition (36 controls, categories A, C, D, ELC, I, K, S). Controls marked "none" are Perihelion additions with no NORS source.
 
-| id | meaning | typical evidence | self-attestable |
-|---|---|---|---|
-| custody.withdraw_authority_model | how the withdraw authority is held (hardware, multisig, custodian) | signed statement, multisig address | no, needs third party |
-| custody.key_rotation | identity/vote key rotation policy and last rotation date | on-chain history | yes |
-| continuity.incapacity_bridge | named backup operator and handoff procedure exists | letter of instruction hash | no |
-| ops.patch_cadence | OS and client patch policy | runbook hash | yes |
-| ops.monitoring_alerting | external monitoring with alert routing | status page URL, probe config hash | yes |
-| infra.location_asn | ASN and region of the primary node | gossip, ASN lookup | yes, on-chain verifiable |
-| legal.entity | legal entity name and jurisdiction | registry document hash | no |
+| id | rcm_ref | meaning | typical evidence | self-attestable |
+|---|---|---|---|---|
+| infra.location_asn | none | primary node location, ASN, hosting provider as disclosed | gossip, ASN lookup | yes, on-chain verifiable |
+| infra.client_version | C-1a | validator client and version; upgrades within the staggered window | gossip version, upgrade log | yes, on-chain verifiable |
+| ops.vote_performance | A-1a, A-2a | skip rate and vote credits against the service level | epoch stats export | yes, on-chain verifiable |
+| ops.monitoring_alerting | I-4a, S-1a | external monitoring with alert routing to a reachable person | status page URL, probe config hash | yes |
+| ops.governance_participation | none | voted or abstained in every open protocol-change round | vote tx signatures | yes, on-chain verifiable |
+| ops.patch_cadence | C-1a, S-5a | OS and client patch policy; no overdue critical patch at period end | runbook hash, patch log | yes |
+| ops.incident_reporting | S-1c | delegator-affecting incidents reported within the agreed window | incident report hashes | yes |
+| custody.withdraw_authority_model | K-1c, K-2a, K-2b | how the withdraw authority is held (hardware, multisig, custodian) | signed statement, multisig address | no, needs third party |
+| custody.key_rotation | K-1a, K-1d | identity and vote key rotation policy and last rotation date | on-chain history | yes |
+| continuity.incapacity_bridge | D-1a, S-1d | named backup operator and current handoff procedure | letter of instruction hash | no |
+| continuity.config_backup | K-1e, S-1e | off-node config and script backup with restore test date | manifest hash, restore log | yes |
+| commercial.commission_disclosure | none | commission and MEV revenue-share settings; change notice period | on-chain config, announcement URL | yes, on-chain verifiable |
+| commercial.stake_source_disclosure | none | stake sources and related-party delegation | stake account list, signed statement | no |
+| legal.entity | ELC-4a | legal entity, jurisdiction, signatory; bond or insurance in force | registry document hash | no |
 
 ## 6. Publication and discovery
 
